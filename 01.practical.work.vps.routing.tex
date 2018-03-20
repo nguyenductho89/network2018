@@ -20,42 +20,38 @@
 
 
 
-\section{VPS}
-traceroute to usth.edu.vn (104.27.160.15), 64 hops max, 52 byte packets\linebreak
+\section{VPS GoogleCloud}
+traceroute to usth.edu.vn (104.27.160.15), 64 hops max\linebreak
 
 \begin{lstlisting}
-(1)  route.cloudatcost.com (104.167.107.1)  11.298 ms  11.343 ms  11.397 ms
-(2)  74.116.120.153 (74.116.120.153)  2.033 ms  2.030 ms  2.102 ms
-(3)  pc-17.coreswitch1.kit.rackanddata.com (98.143.96.56)  0.638 ms pc-17.coreswitch2.kit.rackanddata.com (98.143.96.58)  0.614 ms pc-17.coreswitch1.kit.rackanddata.com (98.143.96.56)  0.626 ms
-(4)  te4-6.tor01ad-crs1.ne.fibernetics.ca (74.205.210.161)  3.184 ms vl3831.te-0-1-0-3.tor0151-asr9a.ne.fibernetics.ca (74.205.214.57)  5.287 ms *
-(5)  * * *
-(6)  * v635.core1.tor1.he.net (209.51.163.213)  9.665 ms *
-(7)  * 100ge13-1.core1.chi1.he.net (184.105.80.5)  14.552 ms *
-(8)  100ge14-1.core2.chi1.he.net (184.105.81.97)  32.982 ms  23.517 ms v635.core1.tor1.he.net (209.51.163.213)  3.908 ms
-(9)  100ge13-1.core1.chi1.he.net (184.105.80.5)  13.716 ms  13.855 ms 100ge14-2.core1.msp1.he.net (184.105.223.178)  26.042 ms
-(10)  100ge14-1.core2.chi1.he.net (184.105.81.97)  21.853 ms  41.229 ms 100ge4-1.core1.sea1.he.net (184.105.223.193)  62.697 ms
-(11)  100ge14-2.core1.msp1.he.net (184.105.223.178)  21.902 ms  21.792 ms 100ge8-1.core1.tyo1.he.net (184.105.213.118)  152.214 ms
-(12)  18403.tyo.equinix.com (203.190.230.127)  239.815 ms  239.851 ms  220.481 ms
-(13)  100ge8-1.core1.tyo1.he.net (184.105.213.118)  151.769 ms  151.764 ms  155.062 ms
-(14)  118.70.3.94 (118.70.3.94)  220.017 ms 18403.tyo.equinix.com (203.190.230.127)  220.026 ms 118.70.3.94 (118.70.3.94)  220.427 ms
-(15)  42.112.4.62 (42.112.4.62)  221.384 ms 118.70.1.102 (118.70.1.102)  217.539 ms 118.70.1.106 (118.70.1.106)  217.680 ms
-(16)  mail.usth.edu.vn (42.112.27.174)  219.562 ms  219.009 ms 118.70.3.94 (118.70.3.94)  219.158 ms
 
+  1   172.17.0.1  0.003ms  0.002ms  0.002ms
+  2   *  *  *
 \end{lstlisting}
 
 \section{My computer}
-traceroute to usth.edu.vn (104.27.160.15), 64 hops max, 52 byte packets
+traceroute to usth.edu.vn (104.27.161.15), 64 hops max, 52 byte packets\linebreak
 \begin{lstlisting}
-(1) 192.168.11.254 (192.168.11.254)  1.795 ms  2.984 ms  2.309 ms
-(2) 192.168.0.1 (192.168.0.1)  1.152 ms  0.887 ms  1.182 ms
-(3) 116.97.243.73 (116.97.243.73)  2.310 ms  2.069 ms  2.305 ms
-(4)  * * *
-(5) 10.245.32.254 (10.245.32.254)  2.151 ms  1.839 ms
-    localhost (27.68.240.250)  24.346 ms
-(6) 13335.hkg.equinix.com (119.27.63.48)  28.885 ms
-    10.245.32.235 (10.245.32.235)  2.091 ms
-    13335.hkg.equinix.com (119.27.63.48)  25.766 ms
-(7) 104.27.160.15 (104.27.160.15)  25.465 ms  27.615 ms
-    113.22.5.118 (113.22.5.118)  3.572 ms
+
+ 1  192.168.10.10 (192.168.10.10)  1.970 ms  1.392 ms  3.199 ms
+ 2  ci96.120-46.netnam.vn (101.96.120.46)  3.171 ms  2.196 ms  1.687 ms
+ 3  static.netnam.vn (119.17.219.78)  1.965 ms
+    static.netnam.vn (119.17.219.74)  2.075 ms
+    static.netnam.vn (119.17.219.78)  2.037 ms
+ 4  static.netnam.vn (119.17.219.13)  23.779 ms  2.128 ms
+    static.netnam.vn (119.17.219.17)  1.554 ms
+ 5  203.113.156.25 (203.113.156.25)  2.358 ms  2.482 ms  2.156 ms
+ 6  static.netnam.vn (119.17.219.17)  1.629 ms
+    localhost (27.68.229.9)  28.114 ms
+    static.netnam.vn (119.17.219.17)  1.870 ms
+ 7  localhost (27.68.240.74)  24.766 ms
+    localhost (27.68.240.94)  34.907 ms
+    localhost (27.68.240.54)  36.667 ms
+ 8  13335.hkg.equinix.com (119.27.63.48)  25.806 ms
+    localhost (27.68.229.9)  30.014 ms
+    13335.hkg.equinix.com (119.27.63.48)  23.033 ms
+ 9  localhost (27.68.240.250)  36.622 ms
+    localhost (27.68.240.98)  24.908 ms
+    104.27.161.15 (104.27.161.15)  23.153 ms
 \end{lstlisting}
 \end{document}
