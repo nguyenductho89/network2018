@@ -72,7 +72,6 @@ int main()
         //Client accept
         clen=sizeof(caddr);
         if ((clientfd=accept(sockfd, (struct sockaddr *) &caddr, &clen)) > 0) {
-            
             ssize_t messageSize;
             char message[256];
             while(clientfd > 0){
@@ -83,26 +82,14 @@ int main()
                 fcntl(clientfd, F_SETFL, fl);
                 //Receive message
                 messageSize = recv(clientfd, message, sizeof(message), 0);
-                if (messageSize < 0){
-                    printf("ERROR reading from socket");
-                }else{
-                    printf("@@@@@@@@@@@@ Client: %s\n",message);
-                }
+                printf("@@@@@@@@@@@@ Client: %s\n",message);
                 //Send message
                 printf("...\n");
                 scanf("%s",message) ;
                 messageSize = send(clientfd, message, strlen(message), 0);
-                if (messageSize < 0){
-                    printf("ERROR writing to socket");
-                }else{
-                    printf("############# Server: %s\n",message);
-                }
+                printf("############# Server: %s\n",message);
             }
         }
     }
     return 0;
 }
-
-
-
-

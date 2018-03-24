@@ -68,19 +68,11 @@ void startConversation(int sockfd) {
     printf("...\n");
     scanf("%s",message) ;
     messageSize = send(sockfd, message, strlen(message), 0);
-    if (messageSize < 0){
-        printf("ERROR writing to socket");
-    }else{
-        printf("@@@@@@@@@@@@ Client: %s\n",message);
-    }
+    printf("@@@@@@@@@@@@ Client: %s\n",message);
     
     //Receive message
     messageSize = recv(sockfd, message, sizeof(message), 0);
-    if (messageSize < 0){
-        printf("ERROR reading from socket");
-    }else{
-        printf("############# Server: %s\n",message);
-    }
+    printf("############# Server: %s\n",message);
 }
 
 int main( int argc, char *argv[] ){
@@ -93,8 +85,3 @@ int main( int argc, char *argv[] ){
     }
     return 0;
 }
-
-
-
-
-
