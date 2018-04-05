@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D01F606A20763E6F00499A78 /* labwork10Server.c in Sources */ = {isa = PBXBuildFile; fileRef = D01F606620763E6300499A78 /* labwork10Server.c */; };
 		D909F8C72068EEB700DBCE77 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = D909F8C62068EEB700DBCE77 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D01F606D20763E6F00499A78 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		D909F8C12068EEB700DBCE77 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -23,11 +33,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D01F606620763E6300499A78 /* labwork10Server.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = labwork10Server.c; sourceTree = "<group>"; };
+		D01F607120763E6F00499A78 /* Labwork10Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Labwork10Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		D909F8C32068EEB700DBCE77 /* Server */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Server; sourceTree = BUILT_PRODUCTS_DIR; };
 		D909F8C62068EEB700DBCE77 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D01F606C20763E6F00499A78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D909F8C02068EEB700DBCE77 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				D909F8C32068EEB700DBCE77 /* Server */,
+				D01F607120763E6F00499A78 /* Labwork10Server */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -58,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				D909F8C62068EEB700DBCE77 /* main.c */,
+				D01F606620763E6300499A78 /* labwork10Server.c */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -65,6 +86,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D01F606820763E6F00499A78 /* Labwork10Server */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D01F606E20763E6F00499A78 /* Build configuration list for PBXNativeTarget "Labwork10Server" */;
+			buildPhases = (
+				D01F606920763E6F00499A78 /* Sources */,
+				D01F606C20763E6F00499A78 /* Frameworks */,
+				D01F606D20763E6F00499A78 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Labwork10Server;
+			productName = Server;
+			productReference = D01F607120763E6F00499A78 /* Labwork10Server */;
+			productType = "com.apple.product-type.tool";
+		};
 		D909F8C22068EEB700DBCE77 /* Server */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D909F8CA2068EEB700DBCE77 /* Build configuration list for PBXNativeTarget "Server" */;
@@ -91,6 +129,9 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = nguyen.duc.tho;
 				TargetAttributes = {
+					D01F606820763E6F00499A78 = {
+						ProvisioningStyle = Automatic;
+					};
 					D909F8C22068EEB700DBCE77 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -110,11 +151,20 @@
 			projectRoot = "";
 			targets = (
 				D909F8C22068EEB700DBCE77 /* Server */,
+				D01F606820763E6F00499A78 /* Labwork10Server */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D01F606920763E6F00499A78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D01F606A20763E6F00499A78 /* labwork10Server.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D909F8BF2068EEB700DBCE77 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,6 +176,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		D01F606F20763E6F00499A78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D01F607020763E6F00499A78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		D909F8C82068EEB700DBCE77 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -248,6 +314,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D01F606E20763E6F00499A78 /* Build configuration list for PBXNativeTarget "Labwork10Server" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D01F606F20763E6F00499A78 /* Debug */,
+				D01F607020763E6F00499A78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D909F8BE2068EEB700DBCE77 /* Build configuration list for PBXProject "Server" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

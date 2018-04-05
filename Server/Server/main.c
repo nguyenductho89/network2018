@@ -28,9 +28,9 @@ int createSocket() {
                SO_REUSEADDR, &(int){ 1 },
                sizeof(int));
     /* Nonblocking */
-    int fl = fcntl(socketFileDescriptor, F_GETFL, 0);
-    fl |= O_NONBLOCK;
-    fcntl(socketFileDescriptor, F_SETFL, fl);
+    int socketFlag = fcntl(socketFileDescriptor, F_GETFL, 0);
+    socketFlag |= O_NONBLOCK;
+    fcntl(socketFileDescriptor, F_SETFL, socketFlag);
     return socketFileDescriptor;
 }
 /* Server address setup */
@@ -65,14 +65,15 @@ int acceptAnListeningClientAtSocket(int socketDescription){
     fcntl(clientFileDescription, F_SETFL, socketFlag);
     return clientFileDescription;
 }
-void addAnAcceptedClientToClientList(int client){
+int addAnAcceptedClientToClientList(int client){
     for (int i = 0; i < NumberOfClients; i++) {
         if (clientList[i] == 0) {
             clientList[i] = client;
-            return;
         }
     }
+    return 0;
 }
+
 int main(){
     /* Create socket*/
     int socketDescription = createSocket();
@@ -87,13 +88,14 @@ int main(){
         printf("Error listening\n");
         return -1;
     }
-    /* Create list of clients */
+    /* Initialize list of clients */
     memset(clientList, 0, sizeof(clientList));
     /* Create a new thread for input */
     pthread_t inputThread;
-    pthread_create(&inputThread, NULL, input, clientList);
+    pthread_create(&inputThread, NULL, input, &clientList);
+    
     /**/
-    char message[256];
+    char message[10];
     /*Create clients list*/
     fd_set fileDescriptionList;
     FD_ZERO(&fileDescriptionList);
@@ -106,7 +108,7 @@ int main(){
         for (int i = 0; i < NumberOfClients; i++) {
             // add connected client sockets to set
             if (clientList[i] > 0) {
-                printf("client %d",i);
+               // printf("client %d",i);
                 FD_SET(clientList[i], &fileDescriptionList);
             }
             if (clientList[i] > maxFileDescriptor) {
@@ -117,14 +119,32 @@ int main(){
         select(maxFileDescriptor+1, &fileDescriptionList, NULL, NULL, NULL);
 
         if (FD_ISSET(socketDescription, &fileDescriptionList)) {
-            int acceptedClient = acceptAnListeningClientAtSocket(socketDescription);
-             addAnAcceptedClientToClientList(acceptedClient);
+            socklen_t socketlen;
+            struct sockaddr_in socketAdress;
+            int clientfd = accept(socketDescription, (struct sockaddr *) &socketAdress, &socketlen);
+            // make it nonblocking
+            int fl = fcntl(clientfd, F_GETFL, 0);
+            fl = fcntl(clientfd, F_GETFL, 0);
+            fl |= O_NONBLOCK;
+            fcntl(clientfd, F_SETFL, fl);
+            // add it to the clientfds array
+            for (int i = 0; i < 100; i++) {
+                if (clientList[i] == 0) {
+                    clientList[i] = clientfd;
+                    break;
+                }
+            }
+//            int acceptedClient = acceptAnListeningClientAtSocket(socketDescription);
+//             addAnAcceptedClientToClientList(acceptedClient);
+//            printf("Client %d connected!\n",acceptedClient-socketDescription-1);
         }
         
+        /* Read received message */
         for (int i = 0; i < NumberOfClients; i++) {
             if (clientList[i] > 0 && FD_ISSET(clientList[i], &fileDescriptionList)) {
                 if (read(clientList[i], message, sizeof(message)) > 0) {
                     printf("client %d says: %s\nserver>\n", i, message);
+                    memset(message, 0, sizeof(message));
                 }
                 else {
                     // some error. remove it from the "active" fd array

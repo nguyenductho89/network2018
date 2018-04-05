@@ -17,6 +17,7 @@
 #include <stdlib.h>
 #define ServerHostName     ((char *)"localhost")
 #define ServerPort          8784
+#define MessageSize         10
 /* Open socket at port */
 int createSocketAt(int port) {
     int socketFileDescriptor;
@@ -28,30 +29,7 @@ int createSocketAt(int port) {
     }
     return socketFileDescriptor;
 }
-/* Get server info from host name */
-struct hostent *getServerInfo(char* hostName){
-    struct hostent* host;
-    host = gethostbyname(hostName);
-    if (host == NULL) {
-        perror("Server host not found!!!\n");
-        return NULL;
-    }
-    if (host->h_addr_list[0] == NULL) {
-        perror("Server host not found!!!\n");
-        return NULL;
-    }
-    return host;
-}
-/* Server address setup */
-struct sockaddr_in registServerSocketAdress(int port, char*hostName){
-    struct sockaddr_in serverSocketAddress;
-    memset(&serverSocketAddress, 0, sizeof(struct sockaddr_in));
-    serverSocketAddress.sin_family = AF_INET;
-    serverSocketAddress.sin_port = htons(port);
-    struct hostent *server = getServerInfo(hostName);
-    memcpy((char *) &serverSocketAddress.sin_addr.s_addr, server->h_addr_list[0], server->h_length);
-    return serverSocketAddress;
-}
+
 /* Main*/
 int main( int argc, char *argv[] ){
     //Create client socket
@@ -77,18 +55,21 @@ int main( int argc, char *argv[] ){
     
     /* Start conversation*/
     ssize_t messageSize;
-    char message[256];
+    char message[MessageSize];
     for (;;) {
-        printf("Type message to send to server\n");
-        scanf("%s",message) ;
-        if((messageSize = send(clientSocketFileDescriptor, message, strlen(message), 0)) >0){
-        printf("@@@@@@@@@@@@ Me: %s\n",message);
-    }
-//        //Receive message
-//        if ((messageSize = recv(clientSocketFileDescriptor, message, sizeof(message), 0))>0) {
-//        printf("############# Server: %s\n",message);
+//        printf(">: ");
+//        bzero(message,MessageSize);
+//        fgets(message,MessageSize-1,stdin);
+//        if((messageSize = send(clientSocketFileDescriptor, message, strlen(message), 0)) >0){
+//            printf("@@@@@@@@@@@@ Me: %s\n",message);
 //        }
+        
+        //Receive message
+        if ((messageSize = recv(clientSocketFileDescriptor, message, sizeof(message), 0))>0) {
+            printf("############# Server: %s\n",message);
+        }
     }
     return 0;
 }
+
 
